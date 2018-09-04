@@ -1,0 +1,72 @@
+<div class="container">
+  <h3>Registration Form</h3>
+  <form #user="ngForm" (ngSubmit)="user.form.valid && register(user.value)" novalidate>
+    <div class="container">
+      {{ errmsg }}
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="fname">First Name</label>
+          <span *ngIf="fn.invalid && user.submitted" class="error-inline">*User name is required</span>
+          <input type="text" name="userName" #fn="ngModel" maxlength="10" ngModel required>
+
+          <br>
+          <label for="mname">Middle Name</label>
+          <input type="text" name="mname" maxlength="10" ngModel>
+          <br>
+          <label for="lname">Last Name</label>
+
+          <span *ngIf="ln.invalid && user.submitted" class="error-inline">*Last name is required</span>
+          <input type="text" name="userLname" #ln="ngModel" maxlength="10" ngModel required>
+          <br>
+          <label for="mno">Mobile Number</label>
+          <ng-container *ngIf="user.submitted && mno.invalid">
+            <span *ngIf="mno.errors && mno.errors.required" class="error-inline">*Mobile no. is required</span>
+            <span *ngIf="mno.errors && mno.errors.minlength" class="error-inline">*It should be of 10-digit</span>
+          </ng-container>
+          <input type="text" name="mobileNumber" #mno="ngModel" minlength="10" maxlength="10" ngModel required>
+          <br>
+          <label for="gen">Gender</label>
+          <span *ngIf="gen.invalid && user.submitted" class="error-inline">*Gender is required</span>
+
+          <br>
+          <input type="radio" name="gender" value="male" #gen="ngModel" [(ngModel)]="gender" ngModel required>M
+          <input type="radio" name="gender" value="female" #gen="ngModel" [(ngModel)]="gender" ngModel required>F
+        </div>
+        <div class="col-md-6">
+          <label for="email">Email-Id</label>
+          <ng-container *ngIf="user.submitted && email.invalid">
+            <span *ngIf="email.errors && email.errors.required" class="error-inline">*Email-Id is required</span>
+            <span *ngIf="email.errors && email.errors.pattern" class="error-inline">*Please enter a valid email</span>
+          </ng-container>
+          <!-- <input placeholder="Contact's email" name="email" #email="ngModel" type="email" pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
+            ngModel required> -->
+          <input placeholder="Contact's email" name="email" #email="ngModel" type="email" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            ngModel required>
+          <br>
+          <label for="pass">Password</label>
+          <span *ngIf="pass.invalid && user.submitted" class="error-inline">*Password is required</span>
+          <input type="password" name="userpass" #pass="ngModel" ngModel required>
+          <br>
+          <label for="country">Country</label>
+          <span *ngIf="country.invalid && user.submitted" class="error-inline">*Country name is required</span>
+
+          <select name="UserCountryName" #country="ngModel" ngModel required>
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+            <option value="India">Indian</option>
+          </select>
+          <br>
+          <label for="area">Area</label>
+          <span *ngIf="area.invalid && user.submitted" class="error-inline">*Area is required</span>
+          <input type="text" #area="ngModel" name="area" maxlength="20" ngModel required>
+          <br>
+          <input type="submit" value="Submit">
+        </div>
+      </div>
+      <br>
+    </div>
+  </form>
+</div>
