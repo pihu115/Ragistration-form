@@ -10,10 +10,12 @@ headers.set('Content-Type', 'application/json');
 export class DataService {
 
   public User: any;
-  public baseUrl = 'http://192.168.0.109:8080/TestP/web/add-user-detail';
+  //public baseUrl = 'http://c94bd270.ngrok.io/register/add';
+  public baseUrl = 'http://localhost:8080/register/';
   constructor(public http: Http) { }
 
   RequestPost(URL, Data) {
+
     return new Promise((resolve, reject) => {
       this.http.post(URL, JSON.stringify(Data), { headers: headers })
         .subscribe(res => {
@@ -22,6 +24,10 @@ export class DataService {
           reject(err);
         });
     });
+  }
+  testPost(URL, Data) {
+    return this.http.post(URL, Data);
+
   }
 
   RequestGet(URL) {

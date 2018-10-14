@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DataService } from './data.service';
+import { VerificationComponent } from './verification/verification.component';
+import { ApartmentDetailsComponent } from './apartment-details/apartment-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    VerificationComponent,
+    ApartmentDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -22,13 +26,20 @@ import { DataService } from './data.service';
     RouterModule.forRoot([
       {
         path: '',
-        component: RegistrationComponent
-      },
-
-      {
-        path: 'home',
         component: HomeComponent
       },
+      {
+        path: 'registration',
+        component: RegistrationComponent
+      },
+      {
+        path: 'verification',
+        component: VerificationComponent
+      },
+      {
+        path: 'apartment-details',
+        component: ApartmentDetailsComponent
+      }
     ])
   ],
   providers: [],

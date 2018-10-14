@@ -27,12 +27,11 @@
           </ng-container>
           <input type="text" name="mobileNumber" #mno="ngModel" minlength="10" maxlength="10" ngModel required>
           <br>
-          <label for="gen">Gender</label>
-          <span *ngIf="gen.invalid && user.submitted" class="error-inline">*Gender is required</span>
-
+          <label for="gender">Gender</label>
+          <span *ngIf="user.submitted && gen.invalid" class="error-inline">*Gender is required</span>
           <br>
-          <input type="radio" name="gender" value="male" #gen="ngModel" [(ngModel)]="gender" ngModel required>M
-          <input type="radio" name="gender" value="female" #gen="ngModel" [(ngModel)]="gender" ngModel required>F
+          <input type="radio" name="gender" value="m" #gen="ngModel" [(ngModel)]="gender" ngModel required>M
+          <input type="radio" name="gender" value="f" #gen="ngModel" [(ngModel)]="gender" ngModel required>F
         </div>
         <div class="col-md-6">
           <label for="email">Email-Id</label>
@@ -46,11 +45,11 @@
             ngModel required>
           <br>
           <label for="pass">Password</label>
-          <span *ngIf="pass.invalid && user.submitted" class="error-inline">*Password is required</span>
+          <span *ngIf="user.submitted && pass.invalid" class="error-inline">*Password is required</span>
           <input type="password" name="userpass" #pass="ngModel" ngModel required>
           <br>
           <label for="country">Country</label>
-          <span *ngIf="country.invalid && user.submitted" class="error-inline">*Country name is required</span>
+          <span *ngIf="user.submitted && country.invalid" class="error-inline">*Country name is required</span>
 
           <select name="UserCountryName" #country="ngModel" ngModel required>
             <option value="australia">Australia</option>
@@ -60,7 +59,7 @@
           </select>
           <br>
           <label for="area">Area</label>
-          <span *ngIf="area.invalid && user.submitted" class="error-inline">*Area is required</span>
+          <span *ngIf="user.submitted && area.invalid" class="error-inline">*Area is required</span>
           <input type="text" #area="ngModel" name="area" maxlength="20" ngModel required>
           <br>
           <input type="submit" value="Submit">

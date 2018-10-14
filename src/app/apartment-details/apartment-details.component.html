@@ -1,0 +1,75 @@
+<div class="container">
+  <h3>Apartment Details</h3>
+  <form #apartmentForm="ngForm" (ngSubmit)="apartmentForm.form.valid && getApartmentDetails(apartmentForm.value)" novalidate>
+    <div class="container">
+      <!-- {{ errmsg }} -->
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <label for="aName">Apartment Name</label>
+          <ng-container *ngIf="apartmentForm.submitted && aName.invalid">
+            <span *ngIf="aName.errors && aName.errors.required" class="error-inline">*apartment name is required</span>
+          </ng-container>
+          <input type="text" name="aName" #aName="ngModel" ngModel required>
+          <br>
+
+          <input type="submit" value="Submit">
+        </div>
+        <div class="col-md-6">
+          <table class="table table-bordered" *ngIf="apartmentDetails">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>value</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apartment Name</td>
+                <td>{{apartmentDetails.aName}} </td>
+              </tr>
+              <tr>
+                <td>Number of Wings </td>
+                <td>{{apartmentDetails.noOfWings}}</td>
+              </tr>
+              <tr>
+                <td>Name of Wings</td>
+                <td>{{apartmentDetails.nameOfWings}}</td>
+              </tr>
+              <tr>
+                <td>Number of floors</td>
+                <td>{{apartmentDetails.noOfFloors}}</td>
+              </tr>
+              <tr>
+                <td>Number of Flats</td>
+                <td>{{apartmentDetails.noOfFlats}}</td>
+              </tr>
+              <tr>
+                <td>Flats On Each Floor</td>
+                <td>{{apartmentDetails.noOfFlatsOnEachFloor}}</td>
+              </tr>
+
+              <tr>
+                <td>Location </td>
+                <td>{{apartmentDetails.location}}</td>
+              </tr>
+              <tr>
+                <td>Longitude</td>
+                <td>{{apartmentDetails.longitude}}</td>
+              </tr>
+              <tr>
+                <td>Latitude</td>
+                <td>{{apartmentDetails.latitude}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+      </div>
+    </div>
+  </form>
+</div>

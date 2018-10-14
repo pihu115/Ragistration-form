@@ -1,0 +1,78 @@
+<div class="container">
+  <h3>Verification</h3>
+  <form #userVerify="ngForm" (ngSubmit)="userVerify.form.valid && verify(userVerify.value)" novalidate>
+    <div class="container">
+      <!-- {{ errmsg }} -->
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+
+
+
+          <label for="mno">Mobile Number</label>
+          <ng-container *ngIf="userVerify.submitted && mno.invalid">
+            <span *ngIf="mno.errors && mno.errors.required" class="error-inline">*Mobile no. is required</span>
+            <span *ngIf="mno.errors && mno.errors.minlength" class="error-inline">*It should be of 10-digit</span>
+          </ng-container>
+          <input type="text" name="mobileNumber" #mno="ngModel" minlength="10" maxlength="10" ngModel required>
+          <br>
+
+
+          <label for="email">Email-Id</label>
+          <ng-container *ngIf="userVerify.submitted && email.invalid">
+            <span *ngIf="email.errors && email.errors.required" class="error-inline">*Email-Id is required</span>
+            <span *ngIf="email.errors && email.errors.pattern" class="error-inline">*Please enter a valid email</span>
+          </ng-container>
+
+          <input placeholder="Contact's email" name="email" #email="ngModel" type="email" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            ngModel required>
+
+          <br>
+          <input type="submit" value="Submit">
+
+
+        </div>
+        <div class="col-md-6">
+          <table class="table table-bordered" *ngIf="userDetails">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>value</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>{{userDetails.firstname}} {{userDetails.middlename}} {{userDetails.lastname}} </td>
+              </tr>
+              <tr>
+                <td>Email-Id</td>
+                <td>{{userDetails.email}}</td>
+              </tr>
+              <tr>
+                <td>Mobile</td>
+                <td>{{userDetails.mobile}}</td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td>{{userDetails.gender}}</td>
+              </tr>
+              <tr>
+                <td>Area</td>
+                <td>{{userDetails.area}}</td>
+              </tr>
+              <tr>
+                <td>Country</td>
+                <td>{{userDetails.country}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+      </div>
+    </div>
+  </form>
+</div>
